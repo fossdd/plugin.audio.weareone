@@ -1,2 +1,5 @@
+v1.1.0
+- Download Stream-List for URLs and Names
+
 v1.0.0
 - Play MP3 Stream of every sender
