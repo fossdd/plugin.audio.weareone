@@ -19,8 +19,18 @@ plugin = routing.Plugin()
 
 @plugin.route('/')
 def index():
+    quality_setting = kodiutils.get_setting("quality")
+    quality = None
+    if quality_setting == u'0':
+        quality = "hd"
+    if quality_setting == u'1':
+        quality = "high"
+    if quality_setting == u'2':
+        quality = "low"
+    if quality == None:
+        quality = "high"
     for stream in get_streams.get_all():
-        addDirectoryItem(plugin.handle, stream["high"], ListItem(stream["name"]))
+        addDirectoryItem(plugin.handle, stream[quality], ListItem(stream["name"]))
     endOfDirectory(plugin.handle)
 
 def run():
